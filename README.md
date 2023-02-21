@@ -7,3 +7,6 @@ Construyendo imagenes:
 
 Imagenes construidas:
 ![](challenge-final-rdem/docs/docs-evidence/imagenes-construidas.png)
+
+Subida de imagenes a dockerhub
+![](challenge-final-rdem/docs/docs-evidence/imagenes-en-dockerhub.png)
