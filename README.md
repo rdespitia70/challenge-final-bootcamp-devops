@@ -35,3 +35,7 @@ Pruebas:
 
 template1.yaml
 ![](challenge-final-rdem/docs/docs-evidence/template1.png)
+
+```
+kubectl apply -f template1.yaml
+```
