@@ -1,0 +1,137 @@
+#namespace
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: challenge-final
+  labels:
+    name: challenge-final
+
+#deployment para frontend
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deploy
+  namespace: challenge-final
+  labels:
+    consumer: frontend
+spec:
+  revisionHistoryLimit: 5 #default 10
+  strategy:
+    type: RollingUpdate #default Recreate
+  replicas: 2
+  selector:
+    matchLabels:
+      consumer: frontend
+  template:
+    metadata:
+      labels:
+        consumer: frontend
+    spec:
+      containers:
+      - name: frontend
+        image: rdespitia70/ms-frontend:1.0
+
+#frontend service
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-service
+  namespace: challenge-final
+spec:
+  type: NodePort
+  selector:
+    app: frontend-deploy
+  ports:
+    - protocol: TCP
+      nodePort: 30010
+      port: 3000
+      targetPort: 3000
+
+#deployment para backend
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: products-deploy
+  namespace: challenge-final
+  labels:
+    consumer: products
+spec:
+  revisionHistoryLimit: 5 #default 10
+  strategy:
+    type: RollingUpdate #default Recreate
+  replicas: 2
+  selector:
+    matchLabels:
+      consumer: products
+  template:
+    metadata:
+      labels:
+        consumer: products
+    spec:
+      containers:
+      - name: products
+        image: rdespitia70/ms-products:1.0
+
+#products service
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: products-service
+  namespace: challenge-final
+spec:
+  type: NodePort
+  selector:
+    app: products-deploy
+  ports:
+    - protocol: TCP
+      nodePort: 30011
+      port: 3001
+      targetPort: 3001
+
+
+#deployment shopping-cart
+
+apiVersion: apps/v1 
+kind: Deployment
+metadata:
+  name: shopping-cart-deployment
+  namespace: bootcamp
+  labels:
+    consumer: shopping-cart
+spec:
+  revisionHistoryLimit: 5 #default 10
+  strategy:
+    type: RollingUpdate #default Recreate
+  replicas: 2
+  selector:
+    matchLabels:
+      consumer: shopping-cart
+  template:
+    metadata:
+      labels:
+        consumer: shopping-cart
+    spec:
+      containers:
+      - name: shopping-cart
+        image: rdespitia70/ms-shopping-cart:1.0
+
+#service for shopping-cart 
+apiVersion: v1
+kind: Service
+metadata:
+  name: shopping-cart-service
+  namespace: bootcamp
+spec:
+  type: NodePort
+  selector:
+    app: shopping-cart-deployment
+  ports:
+    - protocol: TCP
+      nodePort: 30012
+      port: 3002
+      targetPort: 3002

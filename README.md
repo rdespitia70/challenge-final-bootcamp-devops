@@ -30,3 +30,8 @@ Docker run:
 
 Pruebas:
 ![](challenge-final-rdem/docs/docs-evidence/test1.png)
+
+2. Construccion de kubernetes template
+
+template1.yaml
+![](challenge-final-rdem/docs/docs-evidence/template1.png)
