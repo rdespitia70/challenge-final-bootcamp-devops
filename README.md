@@ -23,3 +23,10 @@ Historial de los comandos ejecutados:
  5979  docker push rdespitia70/ms-products:1.0
  5980  docker push rdespitia70/ms-shopping-cart:1.0
 ```
+
+Lanzamos ahora el docker run y hacemos pruebas:
+Docker run:
+![](challenge-final-rdem/docs/docs-evidence/docker-run.png)
+
+Pruebas:
+![](challenge-final-rdem/docs/docs-evidence/test1.png)
